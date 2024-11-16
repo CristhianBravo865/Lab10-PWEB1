@@ -9,6 +9,8 @@ my $hostname = "mariadb2";         # Nombre del contenedor MariaDB
 my $port     = 3307;               # Puerto predeterminado de MariaDB
 my $user     = "root";             # Usuario de MariaDB
 my $password = "tu_contraseña_segura"; # Contraseña para el usuario root
+my $username = "cgi_user";
+my $password = "tu_password";
 
 # DSN de conexión
 my $dsn = "DBI:mysql:database=$database;host=$hostname;port=$port";
