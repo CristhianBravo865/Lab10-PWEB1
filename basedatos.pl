@@ -6,7 +6,7 @@ use DBI;
 # Configuración de conexión
 my $database = "prueba";
 my $hostname = "mariadb2";              
-my $port     = 3307;            #3306???   
+my $port     = 3306;            #3306 o 3307???   
 my $username = "cgi_user";        # Nombre de usuario actualizado
 my $password = "tu_password";     # Contraseña actualizada
 
