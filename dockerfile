@@ -21,8 +21,8 @@ RUN chmod +x /usr/lib/cgi-bin/basedatos.pl
 # Copia el archivo de configuración de Apache
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Configura MariaDB y crea el nuevo usuario
-RUN service mysql start && \
+# Elimina la inicialización manual de la base de datos, ya que MariaDB maneja esto automáticamente
+RUN mysqld_safe --skip-networking & \
     sleep 5 && \
     mysql -u root -e "CREATE DATABASE IF NOT EXISTS prueba;" && \
     mysql -u root -e "CREATE USER 'cgi_user'@'localhost' IDENTIFIED BY 'tu_password';" && \
@@ -43,4 +43,4 @@ RUN service mysql start && \
 EXPOSE 80
 
 # Comando para iniciar Apache y MariaDB
-CMD service mysql start && apache2ctl -D FOREGROUND
+CMD mysqld_safe --skip-networking & apache2ctl -D FOREGROUND
