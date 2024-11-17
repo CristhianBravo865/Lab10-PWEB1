@@ -1,12 +1,12 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 use strict;
 use warnings;
 use DBI;
 
 # Configuración de conexión
 my $database = "prueba";
-my $hostname = "db";              # Cambiar a "db", el nombre del servicio en Docker Compose
-my $port     = 3306;              # Cambiar a 3306, el puerto predeterminado de MariaDB
+my $hostname = "mariadb2";              
+my $port     = 3307;            #3306???   
 my $username = "cgi_user";        # Nombre de usuario actualizado
 my $password = "tu_password";     # Contraseña actualizada
 
