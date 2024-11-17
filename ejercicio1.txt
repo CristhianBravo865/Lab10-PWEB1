@@ -134,3 +134,8 @@ DROP TABLE temp_casting;
 
 -- 6. Verificar los resultados
 SELECT * FROM casting;
+
+--Cambiando un actor repetido 
+UPDATE actores
+SET nombre = 'Liam Hemsworth'
+WHERE actor_id = 3;
