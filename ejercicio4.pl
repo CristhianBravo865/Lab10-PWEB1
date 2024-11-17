@@ -28,7 +28,7 @@ if ($dbh) {
     die "Content-type: text/html\n\nError al conectar a la base de datos: $DBI::errstr\n";
 }
 
-# Consulta SQL para obtener las películas con puntaje mayor a 7 y más de 5000 votos
+# Consulta SQL 
 my $sql = q{
     SELECT pelicula_id, nombre, year, vote, score
     FROM peliculas
@@ -51,22 +51,29 @@ print <<'HTML';
             background-color: black;
             color: white;
         }
+
         table {
             width: 80%;
             border-collapse: collapse;
             margin: 20px auto;
+            background-color: black; 
         }
+
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid white; 
             padding: 8px;
             text-align: left;
+            color: white; 
         }
+
         th {
-            background-color: #f2f2f2;
+            background-color: #333;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+
+        tr {
+            background-color: black; 
         }
+
     </style>
 </head>
 <body>
