@@ -22,6 +22,10 @@ RUN chmod +x /usr/lib/cgi-bin/basedatos.pl
 COPY ejercicio2.pl /usr/lib/cgi-bin/ejercicio2.pl
 RUN chmod +x /usr/lib/cgi-bin/ejercicio2.pl
 
+#Copia el script Perl EJERCICIO3 en el directorio CGI
+COPY ejercicio3.pl /usr/lib/cgi-bin/ejercicio3.pl
+RUN chmod +x /usr/lib/cgi-bin/ejercicio3.pl
+
 # Copia el archivo de configuración de Apache
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
