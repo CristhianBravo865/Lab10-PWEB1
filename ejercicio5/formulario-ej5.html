@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Películas por Año</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
     <header>
         <img src="../images/fips-logo.png" alt="Logo Universidad">
@@ -27,7 +29,7 @@
     </footer>
 
     <script>
-        document.getElementById('consulta-form').addEventListener('submit', function(event) {
+        document.getElementById('consulta-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
             const year = document.getElementById('year').value;
@@ -37,13 +39,16 @@
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('resultados').innerHTML = `<table><tr><th>Película</th><th>Actor</th></tr>${data.split("\n").map(row => `<tr>${row.split(", ").map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</table>`;
+                    // Insertamos directamente el contenido recibido en #resultados sin procesarlo
+                    document.getElementById('resultados').innerHTML = data;
                 })
                 .catch(error => {
                     console.error('Error en la consulta:', error);
                     document.getElementById('resultados').innerText = 'Hubo un error en la consulta.';
                 });
         });
+
     </script>
 </body>
+
 </html>

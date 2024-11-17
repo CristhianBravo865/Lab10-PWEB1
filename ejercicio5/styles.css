@@ -93,3 +93,24 @@ form button:hover {
     border-radius: 4px;
     color: #f0f0f0;
 }
+#resultados table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#resultados th, #resultados td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#resultados th {
+    background-color: #333;
+    color: #fff;
+}
+
+#resultados td {
+    background-color: #444;
+    color: #fff;
+}
