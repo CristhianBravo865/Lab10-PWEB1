@@ -21,10 +21,13 @@ RUN chmod +x /usr/lib/cgi-bin/basedatos.pl
 # Copia el archivo de configuración de Apache
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Configura MariaDB
-RUN mysqld_safe --skip-networking & \
+# Configura MariaDB y crea el nuevo usuario
+RUN service mysql start && \
     sleep 5 && \
-    mysql -u root -e "CREATE DATABASE prueba;" && \
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS prueba;" && \
+    mysql -u root -e "CREATE USER 'cgi_user'@'localhost' IDENTIFIED BY 'tu_password';" && \
+    mysql -u root -e "GRANT ALL PRIVILEGES ON prueba.* TO 'cgi_user'@'localhost';" && \
+    mysql -u root -e "FLUSH PRIVILEGES;" && \
     mysql -u root -e "USE prueba; \
         CREATE TABLE actores (actor_id INT PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(100)); \
         CREATE TABLE peliculas (pelicula_id INT PRIMARY KEY AUTO_INCREMENT, nombre VARCHAR(100), year INT, vote INT, score DECIMAL(3,1)); \
@@ -40,4 +43,4 @@ RUN mysqld_safe --skip-networking & \
 EXPOSE 80
 
 # Comando para iniciar Apache y MariaDB
-CMD mysqld_safe & apache2ctl -D FOREGROUND
+CMD service mysql start && apache2ctl -D FOREGROUND
