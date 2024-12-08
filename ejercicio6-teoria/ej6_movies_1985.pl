@@ -6,9 +6,9 @@ use DBI;
 # Configuración de conexión
 my $database = "prueba";
 my $hostname = "mariadb2";              
-my $port     = 3306;   
+my $port     = 3306;  
 my $username = "Cristhian";  
-my $password = "pweb1";   
+my $password = "pweb1";  
 
 # DSN de conexión
 my $dsn = "DBI:mysql:database=$database;host=$hostname;port=$port";
@@ -27,24 +27,24 @@ if ($dbh) {
     die "Content-type: text/html\n\nError al conectar a la base de datos: $DBI::errstr\n";
 }
 
-# CONSULTA SQL 
+
 my $sql = q{
     SELECT pelicula_id, nombre, year, vote, score
     FROM peliculas
-    WHERE score > 7 AND vote > 5000
+    WHERE year = 1985
 };
 
 my $sth = $dbh->prepare($sql);
 $sth->execute();
 
-# HTML
+
 print <<'HTML';
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas con Puntaje Mayor a 7 y Más de 5000 Votos</title>
+    <title>Películas de 1985</title>
     <style>
         body {
             background-color: black;
@@ -76,7 +76,7 @@ print <<'HTML';
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Películas con Puntaje Mayor a 7 y Más de 5000 Votos</h1>
+    <h1 style="text-align: center;">Películas de 1985</h1>
     <table>
         <tr>
             <th>ID</th>
@@ -87,7 +87,6 @@ print <<'HTML';
         </tr>
 HTML
 
-# MOSTRAR POR FILAS
 while (my $row = $sth->fetchrow_hashref) {
     print "<tr>";
     print "<td>$row->{pelicula_id}</td>";
@@ -98,13 +97,11 @@ while (my $row = $sth->fetchrow_hashref) {
     print "</tr>";
 }
 
-# CIERRE
 print <<'HTML';
     </table>
 </body>
 </html>
 HTML
 
-# Cerrar la conexión
 $sth->finish();
 $dbh->disconnect();

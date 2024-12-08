@@ -38,10 +38,21 @@ RUN chmod +x /usr/lib/cgi-bin/ejercicio4.pl
 COPY ejercicio5/ejercicio5.pl /usr/lib/cgi-bin/ejercicio5.pl
 RUN chmod +x /usr/lib/cgi-bin/ejercicio5.pl
 
+#Copia el script Perl EJERCICIO6 TEORIA en el directorio CGI
+COPY ejercicio6-teoria/ej6_movies_1985.pl /usr/lib/cgi-bin/ej6_movies_1985.pl
+RUN chmod +x /usr/lib/cgi-bin/ej6_movies_1985.pl
+
+#Copia el script Perl EJERCICIO6 TEORIA en el directorio CGI
+COPY ejercicio7-teoria/ejercicio7.pl /usr/lib/cgi-bin/ejercicio7.pl
+RUN chmod +x /usr/lib/cgi-bin/ejercicio7.pl
+
 #Ejercicio5 html imagenes y css
 COPY ./ejercicio5/formulario-ej5.html /var/www/html/
 COPY ./ejercicio5/styles.css /var/www/html/css/
 COPY ./ejercicio5/fips-logo.png /var/www/html/images/
+
+#Ejercicio7 html
+COPY ./ejercicio7-teoria/formulario-ej7.html /var/www/html/
 
 # Copia el archivo de configuración de Apache
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf

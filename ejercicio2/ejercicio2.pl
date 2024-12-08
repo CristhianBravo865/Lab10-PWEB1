@@ -7,8 +7,8 @@ use DBI;
 my $database = "prueba";
 my $hostname = "mariadb2";
 my $port     = 3306; 
-my $username = "cgi_user";
-my $password = "tu_password";
+my $username = "Cristhian";  
+my $password = "pweb1";  
 
 # DSN de conexión
 my $dsn = "DBI:mysql:database=$database;host=$hostname;port=$port";
@@ -16,7 +16,6 @@ my $dsn = "DBI:mysql:database=$database;host=$hostname;port=$port";
 # Conectar a la base de datos
 my $dbh = DBI->connect($dsn, $username, $password, { RaiseError => 1, PrintError => 0, mysql_enable_utf8 => 1 });
 
-# Consulta ID 5 
 my $sql = q{
     SELECT nombre
     FROM actores
@@ -26,7 +25,6 @@ my $sql = q{
 my $sth = $dbh->prepare($sql);
 $sth->execute();
 
-# Obtener el resultado
 my $actor = $sth->fetchrow_array;
 
 # HTML
